@@ -18,6 +18,7 @@ COPY pyproject.toml /src/
 RUN poetry install
 
 COPY . /src
+RUN cd /src && python setup.py develop
 
 RUN chmod +x /src/bin/run.sh
 

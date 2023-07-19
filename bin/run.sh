@@ -1,2 +1,2 @@
 #!/bin/sh
-gunicorn --log-level debug -b 0.0.0.0:80 --timeout=100 --worker-class=uvicorn.workers.UvicornWorker --workers 1 src.appfoo.views:app
+gunicorn --log-level debug -b 0.0.0.0:80 --timeout=100 --worker-class=uvicorn.workers.UvicornWorker --workers 1 appfoo.views:app
