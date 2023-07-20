@@ -1,16 +1,22 @@
 from typing import Union
-
-from fastapi import FastAPI
-
-
-app = FastAPI()
+from fastapi import APIRouter
 
 
-@app.get("/")
+router = APIRouter()
+
+
+@router.get("/")
 def read_root():
     return {"Hello": "World"}
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q, "x": 1}
+@router.get("/mysql")
+def test_mysql():
+    from jsql import sql
+    from sqlalchemy import create_engine
+    engine = create_engine('mysql+mysqldb://root:root@mysql.default.svc.cluster.local/')
+    with engine.begin() as conn:
+        res = sql(conn, """
+            SELECT * FROM test.Persons
+        """).dicts()
+    return {"res": res}
