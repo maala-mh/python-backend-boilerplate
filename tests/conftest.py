@@ -4,6 +4,7 @@ os.environ["TESTING"] = "pytest"
 import logging
 import pytest
 
+from libfoo import models, engine
 
 logger = logging.getLogger(__name__)
 
@@ -49,5 +50,13 @@ class ResponseProxy(ObjProxy):
 @pytest.fixture()
 def client():
     from fastapi.testclient import TestClient
-    from appfoo.views import app
-    return ClientProxy(TestClient(app))
+    from appfoo.views import router
+    return ClientProxy(TestClient(router))
+
+
+def setup_db():
+
+    models.tables.create_all(engine)
+
+
+setup_db()

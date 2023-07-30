@@ -1,5 +1,7 @@
-from typing import Union
 from fastapi import APIRouter
+
+from libfoo import domain
+from libfoo.models import contracts
 
 
 router = APIRouter()
@@ -10,13 +12,11 @@ def read_root():
     return {"Hello": "World"}
 
 
-@router.get("/mysql")
-def test_mysql():
-    from jsql import sql
-    from sqlalchemy import create_engine
-    engine = create_engine('mysql+mysqldb://root:root@mysql.default.svc.cluster.local/')
-    with engine.begin() as conn:
-        res = sql(conn, """
-            SELECT * FROM test.Persons
-        """).dicts()
-    return {"res": res}
+@router.get("/foo")
+def get_foo_list():
+    return domain.foo.get_foo_list()
+
+
+@router.post("/foo")
+def add_foo(payload: contracts.AddFoo):
+    return domain.foo.add_foo(payload.email)
