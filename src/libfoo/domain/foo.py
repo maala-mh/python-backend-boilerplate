@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 
 def add_foo(email):
-    sql(engine, """INSERT INTO foo (email) VALUES (:email)""", email=email)
+    sql(engine, """INSERT IGNORE INTO foo (email) VALUES (:email)""", email=email)
 
 
 def get_foo_list():
