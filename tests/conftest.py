@@ -4,7 +4,11 @@ os.environ["TESTING"] = "pytest"
 import logging
 import pytest
 
+from jsql import sql
+
 from libfoo import models, engine
+from libutil import engines
+
 
 logger = logging.getLogger(__name__)
 
@@ -55,7 +59,9 @@ def client():
 
 
 def setup_db():
-
+    sql(engines.get_engine("test"), """
+        CREATE DATABASE IF NOT EXISTS foo
+    """)
     models.tables.create_all(engine)
 
 
