@@ -15,3 +15,4 @@ def list_blobs(bucket_name) -> list[str]:
     blobs = storage_client.list_blobs(bucket_name)
     res = [blob.name for blob in blobs]
     return res
+
