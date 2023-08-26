@@ -22,6 +22,4 @@ def get_foo_list():
 
 
 def create_table(query):
-    foo_list = sql(engine, query).dicts()
-
-    return foo_list
+    sql(engine, query)
