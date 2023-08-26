@@ -9,7 +9,7 @@ ENGINES = {}
 def get_engine(engine_name):
     if engine_name in ENGINES:
         return ENGINES[engine_name]
-    ENGINES[engine_name] = create_engine('mysql+mysqldb://root:root@mysql.default.svc.cluster.local/')  # TODO: work on
+    ENGINES[engine_name] = create_engine('mysql+mysqldb://foo-mysql:PASSWORD@34.77.85.139/')  # TODO: work on
     return ENGINES[engine_name]
 
 
