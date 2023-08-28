@@ -1,3 +1,4 @@
+import os
 from sqlalchemy import create_engine
 
 from . import IS_TESTING
@@ -9,7 +10,9 @@ ENGINES = {}
 def get_engine(engine_name):
     if engine_name in ENGINES:
         return ENGINES[engine_name]
-    ENGINES[engine_name] = create_engine('mysql+mysqldb://foo-mysql:PASSWORD@34.77.85.139/')  # TODO: work on
+
+    ENGINES[engine_name] = create_engine(
+        'mysql+mysqldb://{username}:{password}@{host}/'.format(username=os.getenv("FOO_DB_USER"), password=os.getenv("FOO_DB_PASS"), host=os.getenv("FOO_DB_HOST")))  # TODO: work on
     return ENGINES[engine_name]
 
 
