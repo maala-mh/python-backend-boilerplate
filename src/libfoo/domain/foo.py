@@ -15,11 +15,7 @@ def add_foo(email):
 def get_foo_list():
     foo_list = sql(engine, """
         SELECT *
-        FROM foo
+        FROM foo.foo
     """).dicts()
 
     return foo_list
-
-
-def create_table(query):
-    sql(engine, query)
