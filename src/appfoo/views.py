@@ -1,3 +1,4 @@
+import os
 from fastapi import APIRouter
 
 from libfoo import domain
@@ -11,6 +12,11 @@ router = APIRouter()
 @router.get("/")
 def read_root():
     return {"my response": "Hello World!"}
+
+
+@router.get("/config")
+def read_config(key):
+    return {key: os.getenv(key)}
 
 
 @router.get("/foo")
