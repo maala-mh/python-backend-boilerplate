@@ -9,8 +9,13 @@ from libfoo.models import contracts
 router = APIRouter()
 
 
+@router.get("/headsortails/flip")
+def flip_heads_or_tails():
+    return domain.headsortails.flip_heads_or_tails()
+
+
 @router.get("/")
-def read_root():
+def get_heads_or_tails():
     return {"my response": "Hello World!"}
 
 
