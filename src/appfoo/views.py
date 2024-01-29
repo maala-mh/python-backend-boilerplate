@@ -1,5 +1,6 @@
 import os
 from fastapi import APIRouter
+from fastapi.responses import HTMLResponse
 
 from libfoo import domain
 from libutil import gcs
@@ -11,7 +12,7 @@ router = APIRouter()
 
 @router.get("/headsortails/flip")
 def flip_heads_or_tails():
-    return domain.headsortails.flip_heads_or_tails()
+    return HTMLResponse(content=domain.headsortails.flip_heads_or_tails(), status_code=200)
 
 
 @router.get("/")
