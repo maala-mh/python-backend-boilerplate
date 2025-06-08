@@ -22,4 +22,3 @@ def execute(payload: contracts.GeneratePdfRequestPayload):
     pdf_bytes = html.write_pdf()
     return StreamingResponse(io.BytesIO(pdf_bytes), media_type="application/pdf",
                              headers={"Content-Disposition": "inline; filename=output.pdf"})
-
