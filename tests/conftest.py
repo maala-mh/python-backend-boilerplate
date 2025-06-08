@@ -4,10 +4,7 @@ os.environ["TESTING"] = "pytest"
 import logging
 import pytest
 
-from jsql import sql
-
-from libfoo import models, engine
-from libutil import engines
+from libhtmltopdf import models
 
 
 logger = logging.getLogger(__name__)
@@ -54,15 +51,5 @@ class ResponseProxy(ObjProxy):
 @pytest.fixture()
 def client():
     from fastapi.testclient import TestClient
-    from appfoo.views import router
+    from apphtmltopdf.views import router
     return ClientProxy(TestClient(router))
-
-
-def setup_db():
-    sql(engines.get_engine("test"), """
-        CREATE DATABASE IF NOT EXISTS foo
-    """)
-    models.tables.create_all(engine)
-
-
-setup_db()

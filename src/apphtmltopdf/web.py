@@ -23,7 +23,7 @@ async def before_request(request: Request, call_next):
     return await call_next(request)
 
 
-from appfoo.views import router
+from apphtmltopdf.views import router
 
 app.include_router(router)
 app = SentryAsgiMiddleware(app)

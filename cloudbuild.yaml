@@ -1,5 +1,5 @@
 substitutions:
-    _REPO: python-backend-boilerplate
+    _REPO: htmltopdf
 steps:
 
 - id: "PUSH DEPLOYMENT IMAGE"

@@ -2,7 +2,7 @@ apiVersion: skaffold/v1
 kind: Config
 build:
   artifacts:
-  - image: fooapp
+  - image: htmltopdfapp
     context: .
     sync:
       manual:
